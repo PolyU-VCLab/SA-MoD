@@ -7,13 +7,13 @@
   Jinrui Zhang<sup>1,2</sup>,
   Zhiyuan Qi<sup>1</sup>,<br>
   Zeqing Wang<sup>1,2</sup>,
-  Wentong Li<sup>1,📧</sup>,
-  Lei Zhang<sup>1,2,📧</sup>
+  Wentong Li<sup>1,&dagger;,&Dagger;</sup>,
+  Lei Zhang<sup>1,2,&dagger;</sup>
 </p>
 <p align="center">
   <sup>1</sup>The Hong Kong Polytechnic University &nbsp;&nbsp;
   <sup>2</sup>OPPO Research Institute<br>
-  <sub><sup>📧</sup>Corresponding authors: <a href="mailto:liwentong95@gmail.com">liwentong95@gmail.com</a>, <a href="mailto:cslzhang@comp.polyu.edu.hk">cslzhang@comp.polyu.edu.hk</a></sub>
+  <sub><sup>&dagger;</sup> Corresponding authors (<a href="mailto:liwentong95@gmail.com">liwentong95@gmail.com</a>, <a href="mailto:cslzhang@comp.polyu.edu.hk">cslzhang@comp.polyu.edu.hk</a>). &nbsp;&nbsp; <sup>&Dagger;</sup> Work done during visiting in PolyU.</sub>
 </p>
 <p align="center">
   <a href="https://arxiv.org/abs/XXXX.XXXXX"><img src="https://img.shields.io/badge/Paper-arXiv-B31B1B?style=flat&logo=arxiv&logoColor=white" alt="Paper"></a>&nbsp;
@@ -45,7 +45,7 @@ If you find this repo useful, a star ⭐ would be greatly appreciated.
 
 - **Sparsity-adaptive Token Routing via Progressive Dense-to-Sparse Transition.** Integrates the **Parameterized Thresholding Mechanism**, **RouterNorm**, and **Density-aware Regularization** to learn content-adaptive, layer-wise visual token routing in a single stage, without fixed budgets, predefined training schedules, and train-inference discrepancies.
 - **On-Policy Distillation with Online Hidden-State Alignment (OHiSA).** Adopts On-Policy Distillation as the training objective and aligns teacher and student hidden representations conditioned on the student's sparse trajectory, providing reliable layer-wise supervision.
-- **Strong Performance and Efficiency across image and video tasks.** On `Qwen3.5-4B`, SA-MoD retains **99.60% / 95.57%** of dense performance across 12 image benchmarks at **25% / 5%** vision-token retention, and **97.78% / 96.77%** across 5 video benchmarks at **25% / 10%** retention, while delivering up to **3.9×** end-to-end speedup.
+- **Strong Performance and Efficiency across image and video tasks.** On `Qwen3.5-4B`, SA-MoD retains **99.60% / 95.57%** of dense performance across 12 image benchmarks at **25% / 5%** vision-token retention, and **97.78% / 96.77%** across 5 video benchmarks at **25% / 10%** retention, while delivering up to **3.95×** end-to-end speedup.
 
 ![SA-MoD Overview](assets/teaser.png)
 
@@ -75,7 +75,7 @@ Results in Tab. 4 of the paper
 SA-MoD/
 ├── VLMEvalKit/                     # Image evaluation suite
 ├── lmms-eval/                      # Video evaluation suite
-├── samod/                          # Training core: SAMoD Qwen3.5, VOPD, OHiSA
+├── samod/                          # Training core: Qwen3.5 SAMoD, OPD
 └── scripts/
     ├── run_opd_qwen3_5_samod.sh    # On-policy self-distillation training launcher
     ├── merge_checkpoint.sh         # FSDP-to-HF checkpoint merger
@@ -280,7 +280,7 @@ General training, rollout, and data hyperparameters can be edited directly at th
   </tbody>
 </table>
 
-### SA-MoD Specific Configuration ([`samod_cfg.json`](samod/verl/models/qwen3_5_samod/configs/samod_cfg.json))
+### SA-MoD Specific Configuration
 
 Routing, sparsity, and hidden-state alignment settings are defined under `config_overrides` in [`samod/verl/models/qwen3_5_samod/configs/samod_cfg.json`](samod/verl/models/qwen3_5_samod/configs/samod_cfg.json) (each LLM decoder layer uses a zero-initialized `Linear(H → 2)` router producing token scores and a per-image / per-video threshold):
 
