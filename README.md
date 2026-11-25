@@ -35,9 +35,9 @@ If you find this repo useful, a star ⭐ would be greatly appreciated.
 
 ## 📰 News
 
-- **[2026-XX-XX]** 📦 **Training data released!** [`SA-MoD-41K`](#training-data) (`SA-MoD-Image-25K` and `SA-MoD-Video-16K`) is now available on [Hugging Face](https://huggingface.co/datasets/VCLab-PolyU/SA-MoD-41K).
-- **[2026-XX-XX]** 🤗 **Checkpoints released!** [`SA-MoD`](#sa-mod-released-checkpoints) (`Qwen3.5-4B-SAMoD-Image-R05`, `Qwen3.5-4B-SAMoD-Image-R25`, and `Qwen3.5-4B-SAMoD-Video-R10`) is now available on [Hugging Face](https://huggingface.co/VCLab-PolyU/SA-MoD).
-- **[2026-XX-XX]** 🚀 **Code released!** Training and integrated image/video evaluation pipelines are now public.
+- **[2026-11-26]** 📦 **Training data released!** [`SA-MoD-41K`](#training-data) (`SA-MoD-Image-25K` and `SA-MoD-Video-16K`) is now available on [Hugging Face](https://huggingface.co/datasets/VCLab-PolyU/SA-MoD-41K).
+- **[2026-11-26]** 🤗 **Checkpoints released!** [`SA-MoD`](#sa-mod-released-checkpoints) (`Qwen3.5-4B-SAMoD-Image-R05`, `Qwen3.5-4B-SAMoD-Image-R25`, and `Qwen3.5-4B-SAMoD-Video-R10`) is now available on [Hugging Face](https://huggingface.co/VCLab-PolyU/SA-MoD).
+- **[2026-11-26]** 🚀 **Code released!** Training and integrated image/video evaluation pipelines are now public.
 
 ## ✨ Highlights
 
