@@ -158,13 +158,13 @@ hf download VCLab-PolyU/SA-MoD --include "Qwen3.5-4B-SAMoD-Image-R05/*" --local-
 
 We release both the image and video training datasets on [`VCLab-PolyU/SA-MoD-41K`](https://huggingface.co/datasets/VCLab-PolyU/SA-MoD-41K):
 
-<table width="100%">
+<table>
   <thead>
     <tr>
-      <th width="24%" align="left">Dataset</th>
-      <th width="12%" align="center">Modality</th>
-      <th width="12%" align="center">Samples</th>
-      <th width="52%" align="left">Subset Path</th>
+      <th width="195" align="left">Dataset</th>
+      <th width="100" align="center">Modality</th>
+      <th width="100" align="center">Samples</th>
+      <th width="500" align="left">Subset Path</th>
     </tr>
   </thead>
   <tbody>
