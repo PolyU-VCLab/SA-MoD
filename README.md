@@ -111,13 +111,13 @@ hf download Qwen/Qwen3.5-4B --local-dir pretrained/Qwen3.5-4B
 
 We release all trained SA-MoD checkpoints on [`VCLab-PolyU/SA-MoD`](https://huggingface.co/VCLab-PolyU/SA-MoD), organized as subfolders:
 
-<table width="100%">
+<table>
   <thead>
     <tr>
-      <th width="34%" align="left">Model</th>
-      <th width="11%" align="center">Modality</th>
-      <th width="12%" align="center">Retention</th>
-      <th width="43%" align="left">Subfolder</th>
+      <th width="335" align="left">Model</th>
+      <th width="100" align="center">Modality</th>
+      <th width="105" align="center">Retention</th>
+      <th width="355" align="left">Subfolder</th>
     </tr>
   </thead>
   <tbody>
@@ -213,12 +213,12 @@ Checkpoints, rollout logs, and a snapshot of the launch script and [`samod_cfg.j
 
 General training, rollout, and data hyperparameters can be edited directly at the top of [`scripts/run_opd_qwen3_5_samod.sh`](scripts/run_opd_qwen3_5_samod.sh):
 
-<table width="100%">
+<table>
   <thead>
     <tr>
-      <th width="26%" align="left">Parameter</th>
-      <th width="30%" align="center">Default</th>
-      <th width="44%" align="left">Description</th>
+      <th width="215" align="left">Parameter</th>
+      <th width="235" align="center">Default</th>
+      <th width="445" align="left">Description</th>
     </tr>
   </thead>
   <tbody>
@@ -263,8 +263,8 @@ General training, rollout, and data hyperparameters can be edited directly at th
       <td>Full-parameter training when <code>false</code></td>
     </tr>
     <tr>
-      <td><code>ALPHA</code></td>
-      <td align="center"><code>0.5</code></td>
+      <td><code>ALPHA</code> / <code>TOPK_LOGITS</code></td>
+      <td align="center"><code>0.5</code> / <code>100</code></td>
       <td>Token-level JSD weight (top-100 logits)</td>
     </tr>
     <tr>
