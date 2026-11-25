@@ -175,7 +175,7 @@ We release both the image and video training datasets on [`VCLab-PolyU/SA-MoD-41
       <td><code>SA-MoD-Image-25K</code></td>
       <td align="center">Image</td>
       <td align="center">25,000</td>
-      <td><code>./SA-MoD-Image-25K/</code></td>
+      <td><code>./SA-MoD-Image-25K/*.parquet</code></td>
     </tr>
     <tr>
       <td><code>SA-MoD-Video-16K</code></td>
@@ -204,7 +204,7 @@ Image benchmarks are stored in `$LMUData`, and video benchmarks are cached in `$
 
 ## 🧪 Training
 
-Launch single-node training on 8 GPUs:
+Example of launching a single-node training on 8 GPUs:
 
 ```bash
 NNODES=1 NGPU=8 bash scripts/run_opd_qwen3_5_samod.sh
