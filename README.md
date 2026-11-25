@@ -1,15 +1,26 @@
-# SA-MoD: Sparsity-Adaptive Mixture-of-Depth for  
-Efficient Vision-Language Models
-
-Bairui Li1,2, Xinyu Wei1,2, Xuyang Liu1,2, Jinrui Zhang1,2, Zhiyuan Qi1,  
-Zeqing Wang1,2, Wentong Li1,📧, Lei Zhang1,2,📧
-
-1The Hong Kong Polytechnic University    2OPPO Research Institute  
-📧Corresponding authors: [liwentong95@gmail.com](mailto:liwentong95@gmail.com), [cslzhang@comp.polyu.edu.hk](mailto:cslzhang@comp.polyu.edu.hk)
-
-[![Paper](https://img.shields.io/badge/Paper-arXiv-B31B1B?style=flat&logo=arxiv&logoColor=white)](https://arxiv.org/abs/XXXX.XXXXX)
-[![Training Data](https://img.shields.io/badge/Training_Data-Hugging_Face-FFD21E?style=flat&logo=huggingface&logoColor=yellow)](https://huggingface.co/datasets/VCLab-PolyU/SA-MoD-41K)
-[![Checkpoints](https://img.shields.io/badge/Checkpoints-Hugging_Face-FFD21E?style=flat&logo=huggingface&logoColor=yellow)](https://huggingface.co/VCLab-PolyU/SA-MoD)
+<div align="center">
+<h1 align="center">SA-MoD: Sparsity-Adaptive Mixture-of-Depth for<br>Efficient Vision-Language Models</h1>
+<p align="center">
+  Bairui Li<sup>1,2</sup>,
+  Xinyu Wei<sup>1,2</sup>,
+  Xuyang Liu<sup>1,2</sup>,
+  Jinrui Zhang<sup>1,2</sup>,
+  Zhiyuan Qi<sup>1</sup>,<br>
+  Zeqing Wang<sup>1,2</sup>,
+  Wentong Li<sup>1,📧</sup>,
+  Lei Zhang<sup>1,2,📧</sup>
+</p>
+<p align="center">
+  <sup>1</sup>The Hong Kong Polytechnic University &nbsp;&nbsp;
+  <sup>2</sup>OPPO Research Institute<br>
+  <sub><sup>📧</sup>Corresponding authors: <a href="mailto:liwentong95@gmail.com">liwentong95@gmail.com</a>, <a href="mailto:cslzhang@comp.polyu.edu.hk">cslzhang@comp.polyu.edu.hk</a></sub>
+</p>
+<p align="center">
+  <a href="https://arxiv.org/abs/XXXX.XXXXX"><img src="https://img.shields.io/badge/Paper-arXiv-B31B1B?style=flat&logo=arxiv&logoColor=white" alt="Paper"></a>&nbsp;
+  <a href="https://huggingface.co/datasets/VCLab-PolyU/SA-MoD-41K"><img src="https://img.shields.io/badge/Training_Data-Hugging_Face-FFD21E?style=flat&logo=huggingface&logoColor=yellow" alt="Training Data"></a>&nbsp;
+  <a href="https://huggingface.co/VCLab-PolyU/SA-MoD"><img src="https://img.shields.io/badge/Checkpoints-Hugging_Face-FFD21E?style=flat&logo=huggingface&logoColor=yellow" alt="Checkpoints"></a>
+</p>
+</div>
 
 ---
 
