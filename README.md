@@ -114,10 +114,10 @@ We release all trained SA-MoD checkpoints on [`VCLab-PolyU/SA-MoD`](https://hugg
 <table width="100%">
   <thead>
     <tr>
-      <th width="36%" align="left">Model</th>
-      <th width="12%" align="center">Modality</th>
-      <th width="14%" align="center">Retention</th>
-      <th width="38%" align="left">Subfolder</th>
+      <th width="34%" align="left">Model</th>
+      <th width="11%" align="center">Modality</th>
+      <th width="12%" align="center">Retention</th>
+      <th width="43%" align="left">Subfolder</th>
     </tr>
   </thead>
   <tbody>
