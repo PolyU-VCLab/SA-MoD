@@ -10,13 +10,13 @@
   Jinrui Zhang<sup>1,2</sup>,
   Zhiyuan Qi<sup>1</sup>,<br>
   Zeqing Wang<sup>1,2</sup>,
-  Wentong Li<sup>1,&dagger;,&Dagger;</sup>,
-  Lei Zhang<sup>1,2,&dagger;</sup>
+  Wentong Li<sup>1,&#x2709;&#xFE0E;,&Dagger;</sup>,
+  Lei Zhang<sup>1,2,&#x2709;&#xFE0E;</sup>
 </p>
 <p align="center">
   <sup>1</sup>The Hong Kong Polytechnic University &nbsp;&nbsp;
   <sup>2</sup>OPPO Research Institute<br>
-  <sub><sup>&dagger;</sup> Corresponding authors (<a href="mailto:liwentong95@gmail.com">liwentong95@gmail.com</a>, <a href="mailto:cslzhang@comp.polyu.edu.hk">cslzhang@comp.polyu.edu.hk</a>). &nbsp;&nbsp; <sup>&Dagger;</sup> Work done during visiting in PolyU.</sub>
+  <sub><sup>&#x2709;&#xFE0E;</sup> Corresponding authors (<a href="mailto:liwentong95@gmail.com">liwentong95@gmail.com</a>, <a href="mailto:cslzhang@comp.polyu.edu.hk">cslzhang@comp.polyu.edu.hk</a>). &nbsp;&nbsp; <sup>&Dagger;</sup> Work done during visiting in PolyU.</sub>
 </p>
 <p align="center">
   <a href="https://arxiv.org/abs/XXXX.XXXXX"><img src="https://img.shields.io/badge/Paper-arXiv-B31B1B?style=flat&logo=arxiv&logoColor=white" alt="Paper"></a>&nbsp;
