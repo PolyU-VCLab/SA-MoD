@@ -128,8 +128,10 @@ ENABLE_THINKING=true
 FORCE_DIRECT_ANSWER=false
 
 # --- Data Paths ---
-TASK_TRAIN_DIR=${PROJECT_ROOT}/datasets/train_image_25k
-# TASK_TRAIN_FILE=${PROJECT_ROOT}/datasets/train_video_16k.parquet
+TASK_TRAIN_DIR=${PROJECT_ROOT}/datasets/SA-MoD-41K/SA-MoD-Image-25K
+# TASK_TRAIN_FILE=${PROJECT_ROOT}/datasets/SA-MoD-41K/SA-MoD-Video-16K/train_video_16k.parquet
+# Root directory joined with relative video paths in video training annotations (e.g., Video-R1-data).
+# VIDEO_ROOT=${VIDEO_ROOT:-${PROJECT_ROOT}/datasets/Video-R1-data}
 if [[ -n "${TASK_TRAIN_DIR:-}" ]]; then
     mapfile -t TASK_TRAIN_FILES < <(find -H "$TASK_TRAIN_DIR" -maxdepth 1 -name '*.parquet' | sort)
     if [[ ${#TASK_TRAIN_FILES[@]} -eq 0 ]]; then
@@ -419,6 +421,7 @@ echo "Max pixels: $MAX_PIXELS"
 echo "Min pixels: $MIN_PIXELS"
 echo "Video fps: ${VIDEO_FPS:-<parquet>}  nframes: ${VIDEO_NFRAMES:-<fps mode>}  frames: ${VIDEO_MIN_FRAMES:-<parquet>}-${VIDEO_MAX_FRAMES:-<parquet>}"
 echo "Video per-frame max pixels: ${VIDEO_MAX_PIXELS:-<derived>}  total pixels: ${VIDEO_TOTAL_PIXELS:-<parquet>}  min pixels: ${VIDEO_MIN_PIXELS:-<parquet>}"
+echo "Video root: ${VIDEO_ROOT:-<parquet>}"
 echo "Seed: $SEED"
 echo "Distributed: nnodes=$TRAINER_NNODES n_gpus_per_node=$TRAINER_N_GPUS_PER_NODE node_rank=$NODE_RANK ray_address=${RAY_ADDRESS:-<verl-local>} master=${RAY_HEAD_ADDRESS}"
 echo "Grad accum: steps=$GRAD_ACCUM_STEPS dynamic_bsz=$ACTOR_USE_DYNAMIC_BSZ local_mini=$LOCAL_MINI micro_per_gpu=${ACTOR_MICRO_BATCH_SIZE_PER_GPU:-<dynamic>}"
@@ -438,6 +441,7 @@ python3 -m verl.trainer.main_ppo --config-name "$CONFIG_NAME" \
     data.apply_chat_template_kwargs.force_direct_answer=$FORCE_DIRECT_ANSWER \
     data.return_multi_modal_inputs=True \
     data.image_key=images \
+    data.video_root=${VIDEO_ROOT:-null} \
     data.video_fps=${VIDEO_FPS:-null} \
     data.video_nframes=${VIDEO_NFRAMES:-null} \
     data.video_min_frames=${VIDEO_MIN_FRAMES:-null} \

@@ -1,26 +1,15 @@
-<div align="center">
-<h1 align="center">Sparsity-Adaptive Mixture-of-Depth for<br>Efficient Vision-Language Models</h1>
-<p align="center">
-  Bairui Li<sup>1,2</sup>,
-  Xinyu Wei<sup>1,2</sup>,
-  Xuyang Liu<sup>1,2</sup>,
-  Jinrui Zhang<sup>1,2</sup>,
-  Zhiyuan Qi<sup>1</sup>,<br>
-  Zeqing Wang<sup>1,2</sup>,
-  Wentong Li<sup>1,📧</sup>,
-  Lei Zhang<sup>1,2,📧</sup>
-</p>
-<p align="center">
-  <sup>1</sup>The Hong Kong Polytechnic University &nbsp;&nbsp;
-  <sup>2</sup>OPPO Research Institute<br>
-  <sub><sup>📧</sup>Corresponding authors: <a href="mailto:liwentong95@gmail.com">liwentong95@gmail.com</a>, <a href="mailto:cslzhang@comp.polyu.edu.hk">cslzhang@comp.polyu.edu.hk</a></sub>
-</p>
-<p align="center">
-  <a href="https://arxiv.org/abs/<ARXIV_ID>"><img src="https://img.shields.io/badge/Paper-arXiv-b31b1b?style=flat-square&logo=arxiv&logoColor=white" alt="Paper"></a>&nbsp;
-  <a href="https://huggingface.co/datasets/<HF_ORG>/SA-MoD-41K"><img src="https://img.shields.io/badge/Training%20Data-Hugging%20Face-ffd21e?style=flat-square&logo=huggingface&logoColor=black" alt="Training Data"></a>&nbsp;
-  <a href="https://huggingface.co/<HF_ORG>"><img src="https://img.shields.io/badge/Checkpoints-Hugging%20Face-ffd21e?style=flat-square&logo=huggingface&logoColor=black" alt="Checkpoints"></a>
-</p>
-</div>
+# SA-MoD: Sparsity-Adaptive Mixture-of-Depth for  
+Efficient Vision-Language Models
+
+Bairui Li1,2, Xinyu Wei1,2, Xuyang Liu1,2, Jinrui Zhang1,2, Zhiyuan Qi1,  
+Zeqing Wang1,2, Wentong Li1,📧, Lei Zhang1,2,📧
+
+1The Hong Kong Polytechnic University    2OPPO Research Institute  
+📧Corresponding authors: [liwentong95@gmail.com](mailto:liwentong95@gmail.com), [cslzhang@comp.polyu.edu.hk](mailto:cslzhang@comp.polyu.edu.hk)
+
+[![Paper](https://img.shields.io/badge/Paper-arXiv-B31B1B?style=flat&logo=arxiv&logoColor=white)](https://arxiv.org/abs/XXXX.XXXXX)
+[![Training Data](https://img.shields.io/badge/Training_Data-Hugging_Face-FFD21E?style=flat&logo=huggingface&logoColor=yellow)](https://huggingface.co/datasets/VCLab-PolyU/SA-MoD-41K)
+[![Checkpoints](https://img.shields.io/badge/Checkpoints-Hugging_Face-FFD21E?style=flat&logo=huggingface&logoColor=yellow)](https://huggingface.co/VCLab-PolyU/SA-MoD)
 
 ---
 
@@ -28,17 +17,17 @@
 
 [News](#news) · [Highlights](#highlights) · [Pipeline](#pipeline) · [Performance](#performance) · [Code Layout](#code-layout) · [Setup](#setup)
 
-[Pretrained Models](#pretrained-models) · [Datasets](#datasets) · [Training](#training) · [Evaluation](#evaluation) · [Citation](#citation) · [Acknowledgements](#acknowledgements)
+[Models and Checkpoints](#models-and-checkpoints) · [Datasets](#datasets) · [Training](#training) · [Evaluation](#evaluation) · [Citation](#citation) · [Acknowledgements](#acknowledgements)
 
 If you find SA-MoD useful for your research, a star ⭐ would be greatly appreciated.
 
-## <a id="news"></a>📰 News
+## 📰 News
 
-- **[2026-XX-XX]** 📦 **Training data released!** [`SA-MoD-41K`](#training-data) (`SA-MoD-Image-25K` and `SA-MoD-Video-16K`) is now available on Hugging Face.
-- **[2026-XX-XX]** 🤗 **Checkpoints released!** Pretrained SA-MoD models ([`Qwen3.5-SAMoD-Image-R05`](#sa-mod-released-checkpoints), [`Qwen3.5-SAMoD-Image-R25`](#sa-mod-released-checkpoints), and [`Qwen3.5-SAMoD-Video-R10`](#sa-mod-released-checkpoints)) are now available on Hugging Face.
+- **[2026-XX-XX]** 📦 **Training data released!** [`SA-MoD-41K`](#training-data) (`SA-MoD-Image-25K` and `SA-MoD-Video-16K`) is now available on [Hugging Face](https://huggingface.co/datasets/VCLab-PolyU/SA-MoD-41K).
+- **[2026-XX-XX]** 🤗 **Checkpoints released!** [`SA-MoD`](#sa-mod-released-checkpoints) (`Qwen3.5-4B-SAMoD-Image-R05`, `Qwen3.5-4B-SAMoD-Image-R25`, and `Qwen3.5-4B-SAMoD-Video-R10`) is now available on [Hugging Face](https://huggingface.co/VCLab-PolyU/SA-MoD).
 - **[2026-XX-XX]** 🚀 **Code released!** Training and integrated image/video evaluation pipelines are now public.
 
-## <a id="highlights"></a>✨ Highlights
+## ✨ Highlights
 
 **Sparsity-Adaptive Mixture-of-Depth (SA-MoD)** is a single-stage post-training framework for efficient long-context visual understanding in vision-language models (VLMs).
 
@@ -46,40 +35,29 @@ If you find SA-MoD useful for your research, a star ⭐ would be greatly appreci
 - **On-Policy Distillation with Online Hidden-State Alignment (OHiSA).** Adopts On-Policy Distillation as the training objective and aligns teacher and student hidden representations conditioned on the student's sparse trajectory, providing reliable layer-wise supervision.
 - **Strong Performance and Efficiency across image and video tasks.** On `Qwen3.5-4B`, SA-MoD retains **99.60% / 95.57%** of dense performance across 12 image benchmarks at **25% / 5%** vision-token retention, and **97.78% / 96.77%** across 5 video benchmarks at **25% / 10%** retention, while delivering up to **3.9×** end-to-end speedup.
 
-<div align="center">
-  <img width="900" src="assets/teaser.png" alt="SA-MoD Overview">
-</div>
+![SA-MoD Overview](assets/teaser.png)
 
-## <a id="pipeline"></a>🧭 Pipeline
+## 🧭 Pipeline
 
-<div align="center">
-  <img width="900" src="assets/pipeline.png" alt="SA-MoD Pipeline">
-</div>
+![SA-MoD Pipeline](assets/pipeline.png)
 
-## <a id="performance"></a>📊 Performance
+## 📊 Performance
 
-<details open>
-<summary>🖼️ Image Benchmark Results</summary>
+🖼️ Image Benchmark Results
 
-- Results in Tab. 2 of the main paper
+Results in Tab. 2 of the paper
 
-<p align="center">
-  <img width="900" src="assets/image_results.png" alt="Image Benchmark Results">
-</p>
+![Image Benchmark Results](assets/image_results.png)
 
-</details>
-<details open>
-<summary>🎬 Video Benchmark Results</summary>
+🎬 Video Benchmark Results
 
-- Results in Tab. 4 of the main paper
+Results in Tab. 4 of the paper
 
-<p align="center">
-  <img width="900" src="assets/video_results.png" alt="Video Benchmark Results">
-</p>
+![Video Benchmark Results](assets/video_results.png)
 
-</details>
 
-## <a id="code-layout"></a>📁 Code Layout
+
+## 📁 Code Layout
 
 ```text
 SA-MoD/
@@ -94,7 +72,7 @@ SA-MoD/
         └── video_eval/             # lmms-eval video evaluation launchers
 ```
 
-## <a id="setup"></a>🛠️ Setup
+## 🛠️ Setup
 
 Use Python 3.12 with a CUDA 13.0 environment. Install PyTorch, dependencies, local packages, and attention kernels:
 
@@ -107,7 +85,7 @@ pip install flash-attn==2.8.2 --no-build-isolation
 pip install flash-linear-attention==0.4.2 --no-build-isolation
 ```
 
-## <a id="pretrained-models"></a>📦 Pretrained Models
+## 📦 Models and Checkpoints
 
 ### Base Model
 
@@ -117,21 +95,56 @@ Download the base `Qwen3.5-4B` checkpoint into `pretrained/Qwen3.5-4B` (used as 
 hf download Qwen/Qwen3.5-4B --local-dir pretrained/Qwen3.5-4B
 ```
 
-### <a id="sa-mod-released-checkpoints"></a>SA-MoD Released Checkpoints
+### SA-MoD Released Checkpoints
 
-We release the trained SA-MoD checkpoints on Hugging Face:
+We release all trained SA-MoD checkpoints in a single Hugging Face repository, organized as subfolders:
 
-| Model | Modality | Target Retention | Hugging Face |
-| --- | --- | --- | --- |
-| `Qwen3.5-SAMoD-Image-R05` | Image | 5% | [Hugging Face](https://huggingface.co/<HF_ORG>/Qwen3.5-SAMoD-Image-R05) |
-| `Qwen3.5-SAMoD-Image-R25` | Image | 25% | [Hugging Face](https://huggingface.co/<HF_ORG>/Qwen3.5-SAMoD-Image-R25) |
-| `Qwen3.5-SAMoD-Video-R10` | Video | 10% | [Hugging Face](https://huggingface.co/<HF_ORG>/Qwen3.5-SAMoD-Video-R10) |
+<table>
+  <thead>
+    <tr>
+      <th>Model</th>
+      <th>Modality</th>
+      <th>Target Retention</th>
+      <th>Subfolder</th>
+      <th>Hugging Face</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Qwen3.5-4B-SAMoD-Image-R05</code></td>
+      <td>Image</td>
+      <td>5%</td>
+      <td><code>./Qwen3.5-4B-SAMoD-Image-R05/</code></td>
+      <td rowspan="3"><a href="https://huggingface.co/VCLab-PolyU/SA-MoD">SA-MoD</a></td>
+    </tr>
+    <tr>
+      <td><code>Qwen3.5-4B-SAMoD-Image-R25</code></td>
+      <td>Image</td>
+      <td>25%</td>
+      <td><code>./Qwen3.5-4B-SAMoD-Image-R25/</code></td>
+    </tr>
+    <tr>
+      <td><code>Qwen3.5-4B-SAMoD-Video-R10</code></td>
+      <td>Video</td>
+      <td>10%</td>
+      <td><code>./Qwen3.5-4B-SAMoD-Video-R10/</code></td>
+    </tr>
+  </tbody>
+</table>
 
-You can download any released checkpoint into `pretrained/` or another specified directory for direct evaluation.
+Download all checkpoints into `pretrained/`, or use `--include` to download a specific subfolder:
 
-## <a id="datasets"></a>🗂️ Datasets
+```bash
+# Download all released checkpoints
+hf download VCLab-PolyU/SA-MoD --local-dir pretrained/
 
-### <a id="training-data"></a>Training Data
+# Or download a single checkpoint
+hf download VCLab-PolyU/SA-MoD --include "Qwen3.5-4B-SAMoD-Image-R05/*" --local-dir pretrained/
+```
+
+## 🗂️ Datasets
+
+### Training Data
 
 We release both the image and video training datasets on Hugging Face:
 
@@ -149,15 +162,15 @@ We release both the image and video training datasets on Hugging Face:
     <tr>
       <td><code>SA-MoD-Image-25K</code></td>
       <td>Image</td>
-      <td>25K</td>
-      <td><code>./train_image_25k/</code></td>
-      <td rowspan="2"><a href="https://huggingface.co/datasets/<HF_ORG>/SA-MoD-41K">SA-MoD-41K</a></td>
+      <td>25,000</td>
+      <td><code>./SA-MoD-Image-25K/</code></td>
+      <td rowspan="2"><a href="https://huggingface.co/datasets/VCLab-PolyU/SA-MoD-41K">SA-MoD-41K</a></td>
     </tr>
     <tr>
       <td><code>SA-MoD-Video-16K</code></td>
       <td>Video</td>
-      <td>16K</td>
-      <td><code>./train_video_16k.parquet</code></td>
+      <td>16,000</td>
+      <td><code>./SA-MoD-Video-16K/train_video_16k.parquet</code></td>
     </tr>
   </tbody>
 </table>
@@ -165,14 +178,20 @@ We release both the image and video training datasets on Hugging Face:
 Download the training datasets from Hugging Face:
 
 ```bash
-hf download --repo-type dataset <HF_ORG>/SA-MoD-41K --local-dir datasets/
+hf download --repo-type dataset VCLab-PolyU/SA-MoD-41K --local-dir datasets/SA-MoD-41K
 ```
+
+> **Note for `SA-MoD-Video-16K`:** We only distribute the video annotations with paths relative to `Video-R1-data`. For video training, please download the raw videos from [`Video-R1/Video-R1-data`](https://huggingface.co/datasets/Video-R1/Video-R1-data) (e.g., into `datasets/Video-R1-data/`) and set `VIDEO_ROOT` in [`scripts/run_opd_qwen3_5_samod.sh`](scripts/run_opd_qwen3_5_samod.sh) to that directory:
+>
+> ```bash
+> hf download --repo-type dataset Video-R1/Video-R1-data --local-dir datasets/Video-R1-data
+> ```
 
 ### Evaluation Data
 
 Image benchmarks are stored in `$LMUData`, and video benchmarks are cached in `$LMMS_EVAL_DATASETS_CACHE`. Both frameworks download missing benchmark files automatically on first run or reuse existing local caches.
 
-## <a id="training"></a>🧪 Training
+## 🧪 Training
 
 Launch single-node training on 8 GPUs:
 
@@ -190,10 +209,11 @@ General training, rollout, and data hyperparameters can be edited directly at th
 | --- | --- | --- |
 | `NNODES` / `NGPU` | `1` / `8` | Number of nodes and GPUs per node, modify as needed |
 | `BASE_MODEL_PATH` / `TEACHER_MODEL_PATH` | `pretrained/Qwen3.5-4B` | Student initialization and frozen full-token teacher |
+| `VIDEO_ROOT` | `datasets/Video-R1-data` | Root directory prepended to relative video paths in `SA-MoD-Video-16K` |
 | `TRAIN_BATCH_SIZE` × `ROLLOUT_N` | `32` × `4` | Prompts per step × student rollouts per prompt |
 | `LR` / `ROUTER_LR` | `2e-6` / `2e-6` | Learning rates for backbone and per-layer routers |
 | `FREEZE_VISION_TOWER` | `false` | Full-parameter training (including vision tower) when `false` |
-| `ALPHA` / `JSD Top-K` | `0.5` / `100` | Token-level JSD interpolation coefficient (top-100 logits) |
+| `ALPHA` / `Logits Top-K` | `0.5` / `100` | Token-level JSD interpolation coefficient (top-100 logits) |
 | `MAX_PROMPT_LENGTH` / `MAX_RESPONSE_LENGTH` | `48896` / `256` | Maximum prompt and generated response lengths |
 
 ### SA-MoD Specific Configuration ([`samod_cfg.json`](samod/verl/models/qwen3_5_samod/configs/samod_cfg.json))
@@ -212,42 +232,42 @@ Routing, sparsity, and hidden-state alignment settings are defined under `config
 
 Logging defaults to console output. To enable SwanLab, export `SWANLAB_API_KEY` and set `TRAINER_LOGGER='["console","swanlab"]'` before launching.
 
-## <a id="evaluation"></a>🔍 Evaluation
+## 🔍 Evaluation
 
 Evaluation scripts accept either a merged HF checkpoint or an unmerged FSDP checkpoint (auto-merged via [`scripts/merge_checkpoint.sh`](scripts/merge_checkpoint.sh)). Pass `EVAL_ORIGINAL=1` to evaluate the dense `Qwen3.5-4B` baseline.
 
-### 🖼️ Image Benchmarks Evaluation (VLMEvalKit)
+### 🖼️ Image Benchmarks (VLMEvalKit)
 
 Benchmarks and settings are configured in [`eval_cfg_qwen3_5_integrated.json`](scripts/eval/image_eval/eval_cfg_qwen3_5_integrated.json).
 
 ```bash
 # SA-MoD checkpoint (results saved to eval_outputs/vlmevalkit/<MODEL_NAME>/)
-MODEL_NAME=Qwen3.5-SAMoD-Image-R05 MODEL_PATH=pretrained/Qwen3.5-SAMoD-Image-R05 \
+MODEL_NAME=Qwen3.5-4B-SAMoD-Image-R05 MODEL_PATH=pretrained/Qwen3.5-4B-SAMoD-Image-R05 \
 bash scripts/eval/image_eval/qwen3_5.sh
 
 # Dense Qwen3.5-4B baseline
 EVAL_ORIGINAL=1 bash scripts/eval/image_eval/qwen3_5.sh
 ```
 
-### 🎬 Video Benchmarks Evaluation (lmms-eval)
+### 🎬 Video Benchmarks (lmms-eval)
 
 Benchmarks are configured in [`integrated_eval.sh`](scripts/eval/video_eval/integrated_eval.sh). Set `LMMS_LOG_GEN_METRICS=1` to also log average latency, TTFT, and KV-cache usage.
 
 ```bash
 # Full video suite (results saved to eval_outputs/lmms_eval/<MODEL_NAME>/)
-MODEL_NAME=Qwen3.5-SAMoD-Video-R10 MODEL_PATH=pretrained/Qwen3.5-SAMoD-Video-R10 \
+MODEL_NAME=Qwen3.5-4B-SAMoD-Video-R10 MODEL_PATH=pretrained/Qwen3.5-4B-SAMoD-Video-R10 \
 bash scripts/eval/video_eval/integrated_eval.sh
 
 # Single benchmark
 TASKS=videomme MAX_FRAMES=128 FPS=1 MAX_TOKENS_PER_FRAME=768 MAX_NEW_TOKENS=512 \
-MODEL_NAME=Qwen3.5-SAMoD-Video-R10 MODEL_PATH=pretrained/Qwen3.5-SAMoD-Video-R10 \
+MODEL_NAME=Qwen3.5-4B-SAMoD-Video-R10 MODEL_PATH=pretrained/Qwen3.5-4B-SAMoD-Video-R10 \
 bash scripts/eval/video_eval/qwen3_5_video.sh
 
 # Dense Qwen3.5-4B baseline
 EVAL_ORIGINAL=1 bash scripts/eval/video_eval/integrated_eval.sh
 ```
 
-## <a id="citation"></a>📖 Citation
+## 📖 Citation
 
 If you find SA-MoD helpful in your research, please consider citing our paper:
 
@@ -260,6 +280,6 @@ If you find SA-MoD helpful in your research, please consider citing our paper:
 }
 ```
 
-## <a id="acknowledgements"></a>🙏 Acknowledgements
+## 🙏 Acknowledgements
 
 SA-MoD builds upon [Vision-OPD](https://github.com/VisionOPD/Vision-OPD), [verl](https://github.com/volcengine/verl), [VLMEvalKit](https://github.com/open-compass/VLMEvalKit), and [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval). We thank the authors and communities behind these open-source projects for their great work.

@@ -14,8 +14,8 @@ export LMMS_EVAL_DATASETS_CACHE="${LMMS_EVAL_DATASETS_CACHE:-"${PROJECT_ROOT}/da
 
 # Caller sets MODEL_NAME / MODEL_PATH. EVAL_ORIGINAL=1 replaces them with dense Qwen3.5.
 EVAL_ORIGINAL="${EVAL_ORIGINAL:-0}"
-MODEL_NAME="${MODEL_NAME:-Qwen3.5-SAMoD-Video-R10}"
-MODEL_PATH="${MODEL_PATH:-pretrained/Qwen3.5-SAMoD-Video-R10}"
+MODEL_NAME="${MODEL_NAME:-Qwen3.5-4B-SAMoD-Video-R10}"
+MODEL_PATH="${MODEL_PATH:-pretrained/Qwen3.5-4B-SAMoD-Video-R10}"
 LMMS_MODEL=qwen3_5_samod
 if [[ "${EVAL_ORIGINAL}" == "1" ]]; then
   LMMS_MODEL=qwen3_5

@@ -21,7 +21,7 @@ import re
 import traceback
 from collections import defaultdict
 from io import BytesIO
-from typing import Optional
+from typing import Any, Optional
 
 import datasets
 import numpy as np
@@ -116,6 +116,8 @@ class RLHFDataset(Dataset):
         self.prompt_key = config.get("prompt_key", "prompt")
         self.image_key = config.get("image_key", "images")
         self.video_key = config.get("video_key", "videos")
+        raw_video_root = config.get("video_root", None)
+        self.video_root = os.path.expanduser(str(raw_video_root)) if raw_video_root else None
         self.video_fps = _optional_number(config.get("video_fps", None), cast=float)
         self.video_nframes = _optional_number(config.get("video_nframes", None), cast=int)
         self.video_min_frames = _optional_number(config.get("video_min_frames", None), cast=int)
@@ -360,13 +362,27 @@ class RLHFDataset(Dataset):
         assert video_offset == len(videos), f"video_offset {video_offset} != len(videos) {len(videos)}"
         return messages
 
-    def _apply_video_controls(self, video: dict) -> dict:
-        """Bash/config sampling overrides values stored in the parquet video dict.
+    def _resolve_video_path(self, path_like: Any) -> Any:
+        """Join relative video paths with ``self.video_root`` when configured."""
+        if not self.video_root:
+            return path_like
+        if isinstance(path_like, str):
+            if path_like.startswith(("http://", "https://", "file://")) or os.path.isabs(path_like):
+                return path_like
+            return os.path.join(self.video_root, path_like)
+        if isinstance(path_like, list):
+            return [self._resolve_video_path(item) if isinstance(item, str) else item for item in path_like]
+        return path_like
+
+    def _apply_video_controls(self, video: dict | str) -> dict:
+        """Resolve relative video paths and apply bash/config sampling overrides.
 
         Fixed ``video_nframes`` and ``video_fps`` cannot be sent together.
         A set frame count drops fps. Otherwise fps stays, with optional min/max frames.
         """
-        controlled = dict(video)
+        controlled = {"video": video} if isinstance(video, str) else dict(video)
+        if "video" in controlled and controlled["video"] is not None:
+            controlled["video"] = self._resolve_video_path(controlled["video"])
         if self.video_nframes is not None:
             controlled.pop("fps", None)
             controlled.pop("min_frames", None)

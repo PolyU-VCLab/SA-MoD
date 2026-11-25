@@ -7,8 +7,8 @@ NGPU="${1:-${NGPU:-$(python3 -c "import torch; print(torch.cuda.device_count())"
 
 # 1: dense Qwen3.5. 0: the SAMoD checkpoint below.
 EVAL_ORIGINAL=${EVAL_ORIGINAL:-0}
-MODEL_NAME=${MODEL_NAME:-Qwen3.5-SAMoD-Video-R10}
-MODEL_PATH=${MODEL_PATH:-pretrained/Qwen3.5-SAMoD-Video-R10}
+MODEL_NAME=${MODEL_NAME:-Qwen3.5-4B-SAMoD-Video-R10}
+MODEL_PATH=${MODEL_PATH:-pretrained/Qwen3.5-4B-SAMoD-Video-R10}
 
 # 1: record samples/s, TTFT, and KV cache. 0: accuracy only.
 export LMMS_LOG_GEN_METRICS=${LMMS_LOG_GEN_METRICS:-0}

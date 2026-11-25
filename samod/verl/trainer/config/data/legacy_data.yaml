@@ -94,6 +94,9 @@ image_key: images
 # The field in the multi-modal dataset where the video is located.
 video_key: videos
 
+# Optional root directory joined with relative video paths stored in the parquet.
+video_root: null
+
 # Runtime video sampling. These override fps / nframes / pixel keys stored in the parquet.
 # Set video_nframes to sample a fixed frame count. That disables video_fps.
 # Leave video_nframes null to sample at video_fps, clipped to [video_min_frames, video_max_frames].

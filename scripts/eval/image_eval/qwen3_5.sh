@@ -22,8 +22,8 @@ if [[ "${EVAL_ORIGINAL}" == "1" ]]; then
   MODEL_PATH="${MODEL_PATH:-pretrained/Qwen3.5-4B}"
 else
   MODEL_CHOICE=samod
-  MODEL_NAME="${MODEL_NAME:-Qwen3.5-SAMoD-Image-R25}"
-  MODEL_PATH="${MODEL_PATH:-pretrained/Qwen3.5-SAMoD-Image-R25}"
+  MODEL_NAME="${MODEL_NAME:-Qwen3.5-4B-SAMoD-Image-R25}"
+  MODEL_PATH="${MODEL_PATH:-pretrained/Qwen3.5-4B-SAMoD-Image-R25}"
 fi
 
 NGPU="${1:-$(python3 -c "import torch; print(torch.cuda.device_count())")}"
