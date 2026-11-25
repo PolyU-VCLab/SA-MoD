@@ -17,8 +17,9 @@
 </p>
 <p align="center">
   <a href="https://arxiv.org/abs/XXXX.XXXXX"><img src="https://img.shields.io/badge/Paper-arXiv-B31B1B?style=flat&logo=arxiv&logoColor=white" alt="Paper"></a>&nbsp;
-  <a href="https://huggingface.co/datasets/VCLab-PolyU/SA-MoD-41K"><img src="https://img.shields.io/badge/Training_Data-Hugging_Face-FFD21E?style=flat&logo=huggingface&logoColor=yellow" alt="Training Data"></a>&nbsp;
-  <a href="https://huggingface.co/VCLab-PolyU/SA-MoD"><img src="https://img.shields.io/badge/Checkpoints-Hugging_Face-FFD21E?style=flat&logo=huggingface&logoColor=yellow" alt="Checkpoints"></a>
+  <a href="https://huggingface.co/VCLab-PolyU/SA-MoD"><img src="https://img.shields.io/badge/Checkpoints-Hugging_Face-FFD21E?style=flat&logo=huggingface&logoColor=yellow" alt="Checkpoints"></a>&nbsp;
+  <a href="https://huggingface.co/datasets/VCLab-PolyU/SA-MoD-41K"><img src="https://img.shields.io/badge/Training_Data-Hugging_Face-FFD21E?style=flat&logo=huggingface&logoColor=yellow" alt="Training Data"></a>
+  
 </p>
 </div>
 
@@ -30,7 +31,7 @@
 
 [Models and Checkpoints](#models-and-checkpoints) · [Datasets](#datasets) · [Training](#training) · [Evaluation](#evaluation) · [Citation](#citation) · [Acknowledgements](#acknowledgements)
 
-If you find SA-MoD useful for your research, a star ⭐ would be greatly appreciated.
+If you find this repo useful, a star ⭐ would be greatly appreciated.
 
 ## 📰 News
 
@@ -117,7 +118,7 @@ We release all trained SA-MoD checkpoints in a single Hugging Face repository, o
       <th>Modality</th>
       <th>Target Retention</th>
       <th>Subfolder</th>
-      <th>Hugging Face</th>
+      <th>HF Link</th>
     </tr>
   </thead>
   <tbody>
@@ -166,7 +167,7 @@ We release both the image and video training datasets on Hugging Face:
       <th>Modality</th>
       <th>Samples</th>
       <th>Subset Path</th>
-      <th>Hugging Face</th>
+      <th>HF Link</th>
     </tr>
   </thead>
   <tbody>
