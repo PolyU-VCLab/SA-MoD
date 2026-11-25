@@ -35,8 +35,8 @@ If you find this repo useful, a star ⭐ would be greatly appreciated.
 
 ## 📰 News
 
-- **[2026-11-26]** 📦 **Training data released!** [`SA-MoD-41K`](#training-data) (`SA-MoD-Image-25K` and `SA-MoD-Video-16K`) is now available on [Hugging Face](https://huggingface.co/datasets/VCLab-PolyU/SA-MoD-41K).
-- **[2026-11-26]** 🤗 **Checkpoints released!** [`SA-MoD`](#sa-mod-released-checkpoints) (`Qwen3.5-4B-SAMoD-Image-R05`, `Qwen3.5-4B-SAMoD-Image-R25`, and `Qwen3.5-4B-SAMoD-Video-R10`) is now available on [Hugging Face](https://huggingface.co/VCLab-PolyU/SA-MoD).
+- **[2026-11-26]** 📦 **Training data released!** `SA-MoD-Image-25K` and `SA-MoD-Video-16K` is now available on HuggingFace: [SA-MoD-41K](https://huggingface.co/datasets/VCLab-PolyU/SA-MoD-41K).
+- **[2026-11-26]** 🤗 **Checkpoints released!** We released three checkpoints: `Qwen3.5-4B-SAMoD-Image-R05`, `Qwen3.5-4B-SAMoD-Image-R25`, and `Qwen3.5-4B-SAMoD-Video-R10`, now available on HuggingFace [SA-MoD](https://huggingface.co/VCLab-PolyU/SA-MoD).
 - **[2026-11-26]** 🚀 **Code released!** Training and integrated image/video evaluation pipelines are now public.
 
 ## ✨ Highlights
@@ -109,36 +109,34 @@ hf download Qwen/Qwen3.5-4B --local-dir pretrained/Qwen3.5-4B
 
 ### SA-MoD Released Checkpoints
 
-We release all trained SA-MoD checkpoints in a single Hugging Face repository, organized as subfolders:
+We release all trained SA-MoD checkpoints on [`VCLab-PolyU/SA-MoD`](https://huggingface.co/VCLab-PolyU/SA-MoD), organized as subfolders:
 
-<table>
+<table width="100%">
   <thead>
     <tr>
-      <th>Model</th>
-      <th>Modality</th>
-      <th>Target Retention</th>
-      <th>Subfolder</th>
-      <th>HF Link</th>
+      <th width="36%" align="left">Model</th>
+      <th width="12%" align="center">Modality</th>
+      <th width="14%" align="center">Retention</th>
+      <th width="38%" align="left">Subfolder</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>Qwen3.5-4B-SAMoD-Image-R05</code></td>
-      <td>Image</td>
-      <td>5%</td>
+      <td align="center">Image</td>
+      <td align="center">5%</td>
       <td><code>./Qwen3.5-4B-SAMoD-Image-R05/</code></td>
-      <td rowspan="3"><a href="https://huggingface.co/VCLab-PolyU/SA-MoD">SA-MoD</a></td>
     </tr>
     <tr>
       <td><code>Qwen3.5-4B-SAMoD-Image-R25</code></td>
-      <td>Image</td>
-      <td>25%</td>
+      <td align="center">Image</td>
+      <td align="center">25%</td>
       <td><code>./Qwen3.5-4B-SAMoD-Image-R25/</code></td>
     </tr>
     <tr>
       <td><code>Qwen3.5-4B-SAMoD-Video-R10</code></td>
-      <td>Video</td>
-      <td>10%</td>
+      <td align="center">Video</td>
+      <td align="center">10%</td>
       <td><code>./Qwen3.5-4B-SAMoD-Video-R10/</code></td>
     </tr>
   </tbody>
@@ -158,30 +156,28 @@ hf download VCLab-PolyU/SA-MoD --include "Qwen3.5-4B-SAMoD-Image-R05/*" --local-
 
 ### Training Data
 
-We release both the image and video training datasets on Hugging Face:
+We release both the image and video training datasets on [`VCLab-PolyU/SA-MoD-41K`](https://huggingface.co/datasets/VCLab-PolyU/SA-MoD-41K):
 
-<table>
+<table width="100%">
   <thead>
     <tr>
-      <th>Dataset</th>
-      <th>Modality</th>
-      <th>Samples</th>
-      <th>Subset Path</th>
-      <th>HF Link</th>
+      <th width="24%" align="left">Dataset</th>
+      <th width="12%" align="center">Modality</th>
+      <th width="12%" align="center">Samples</th>
+      <th width="52%" align="left">Subset Path</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>SA-MoD-Image-25K</code></td>
-      <td>Image</td>
-      <td>25,000</td>
+      <td align="center">Image</td>
+      <td align="center">25,000</td>
       <td><code>./SA-MoD-Image-25K/</code></td>
-      <td rowspan="2"><a href="https://huggingface.co/datasets/VCLab-PolyU/SA-MoD-41K">SA-MoD-41K</a></td>
     </tr>
     <tr>
       <td><code>SA-MoD-Video-16K</code></td>
-      <td>Video</td>
-      <td>16,000</td>
+      <td align="center">Video</td>
+      <td align="center">16,000</td>
       <td><code>./SA-MoD-Video-16K/train_video_16k.parquet</code></td>
     </tr>
   </tbody>
@@ -217,28 +213,113 @@ Checkpoints, rollout logs, and a snapshot of the launch script and [`samod_cfg.j
 
 General training, rollout, and data hyperparameters can be edited directly at the top of [`scripts/run_opd_qwen3_5_samod.sh`](scripts/run_opd_qwen3_5_samod.sh):
 
-| Parameter | Default | Description |
-| --- | --- | --- |
-| `NNODES` / `NGPU` | `1` / `8` | Number of nodes and GPUs per node, modify as needed |
-| `BASE_MODEL_PATH` / `TEACHER_MODEL_PATH` | `pretrained/Qwen3.5-4B` | Student initialization and frozen full-token teacher |
-| `VIDEO_ROOT` | `datasets/Video-R1-data` | Root directory prepended to relative video paths in `SA-MoD-Video-16K` |
-| `TRAIN_BATCH_SIZE` × `ROLLOUT_N` | `32` × `4` | Prompts per step × student rollouts per prompt |
-| `LR` / `ROUTER_LR` | `2e-6` / `2e-6` | Learning rates for backbone and per-layer routers |
-| `FREEZE_VISION_TOWER` | `false` | Full-parameter training (including vision tower) when `false` |
-| `ALPHA` / `Logits Top-K` | `0.5` / `100` | Token-level JSD interpolation coefficient (top-100 logits) |
-| `MAX_PROMPT_LENGTH` / `MAX_RESPONSE_LENGTH` | `48896` / `256` | Maximum prompt and generated response lengths |
+<table width="100%">
+  <thead>
+    <tr>
+      <th width="26%" align="left">Parameter</th>
+      <th width="30%" align="center">Default</th>
+      <th width="44%" align="left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>NNODES</code> / <code>NGPU</code></td>
+      <td align="center"><code>1</code> / <code>8</code></td>
+      <td>Number of nodes and GPUs per node</td>
+    </tr>
+    <tr>
+      <td><code>BASE_MODEL_PATH</code></td>
+      <td align="center"><code>pretrained/Qwen3.5-4B</code></td>
+      <td>Student initialization checkpoint</td>
+    </tr>
+    <tr>
+      <td><code>TEACHER_MODEL_PATH</code></td>
+      <td align="center"><code>pretrained/Qwen3.5-4B</code></td>
+      <td>Frozen dense teacher checkpoint</td>
+    </tr>
+    <tr>
+      <td><code>VIDEO_ROOT</code></td>
+      <td align="center"><code>datasets/Video-R1-data</code></td>
+      <td>Root directory for relative video paths</td>
+    </tr>
+    <tr>
+      <td><code>TRAIN_BATCH_SIZE</code></td>
+      <td align="center"><code>32</code></td>
+      <td>Number of prompts per training step</td>
+    </tr>
+    <tr>
+      <td><code>ROLLOUT_N</code></td>
+      <td align="center"><code>4</code></td>
+      <td>Student rollouts generated per prompt</td>
+    </tr>
+    <tr>
+      <td><code>LR</code> / <code>ROUTER_LR</code></td>
+      <td align="center"><code>2e-6</code> / <code>2e-6</code></td>
+      <td>Learning rates for backbone and routers</td>
+    </tr>
+    <tr>
+      <td><code>FREEZE_VISION_TOWER</code></td>
+      <td align="center"><code>false</code></td>
+      <td>Full-parameter training when <code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>ALPHA</code></td>
+      <td align="center"><code>0.5</code></td>
+      <td>Token-level JSD weight (top-100 logits)</td>
+    </tr>
+    <tr>
+      <td><code>MAX_PROMPT_LENGTH</code></td>
+      <td align="center"><code>48896</code></td>
+      <td>Maximum prompt token length</td>
+    </tr>
+    <tr>
+      <td><code>MAX_RESPONSE_LENGTH</code></td>
+      <td align="center"><code>256</code></td>
+      <td>Maximum generated response length</td>
+    </tr>
+  </tbody>
+</table>
 
 ### SA-MoD Specific Configuration ([`samod_cfg.json`](samod/verl/models/qwen3_5_samod/configs/samod_cfg.json))
 
 Routing, sparsity, and hidden-state alignment settings are defined under `config_overrides` in [`samod/verl/models/qwen3_5_samod/configs/samod_cfg.json`](samod/verl/models/qwen3_5_samod/configs/samod_cfg.json) (each LLM decoder layer uses a zero-initialized `Linear(H → 2)` router producing token scores and a per-image / per-video threshold):
 
-| Key | Default | Description |
-| --- | --- | --- |
-| `samod_sparsity_target` | `0.05` | Target visual-token retention upper bound (e.g., `0.05`, `0.10`, `0.25`) |
-| `samod_margin` | `0.1` | Routing score margin around the learned threshold |
-| `samod_weight_norm` | `0.2` | Branch reweighting scale applied to kept visual tokens |
-| `samod_dreg_loss_weight` | `0.001` | Weight of Density-aware Regularization toward `samod_sparsity_target` |
-| `ohisa_loss_weight` | `1.0` | Weight of Online Hidden-State Alignment (OHiSA) loss |
+<table width="100%">
+  <thead>
+    <tr>
+      <th width="29%" align="left">Key</th>
+      <th width="11%" align="center">Default</th>
+      <th width="60%" align="left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>samod_sparsity_target</code></td>
+      <td align="center"><code>0.05</code></td>
+      <td>Target visual-token retention (<code>0.05</code> / <code>0.10</code> / <code>0.25</code>)</td>
+    </tr>
+    <tr>
+      <td><code>samod_margin</code></td>
+      <td align="center"><code>0.1</code></td>
+      <td>Routing score margin around the learned threshold</td>
+    </tr>
+    <tr>
+      <td><code>samod_weight_norm</code></td>
+      <td align="center"><code>0.2</code></td>
+      <td>Branch reweighting scale for kept visual tokens</td>
+    </tr>
+    <tr>
+      <td><code>samod_dreg_loss_weight</code></td>
+      <td align="center"><code>0.001</code></td>
+      <td>Density-aware Regularization loss weight</td>
+    </tr>
+    <tr>
+      <td><code>ohisa_loss_weight</code></td>
+      <td align="center"><code>1.0</code></td>
+      <td>Online Hidden-State Alignment (OHiSA) loss weight</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Experiment Logging
 
