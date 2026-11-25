@@ -1,6 +1,5 @@
 <div align="center">
-<h1 align="center">SA-MoD</h1>
-<h3 align="center">Sparsity-Adaptive Mixture-of-Depth for Efficient Vision-Language Models</h3>
+<h1 align="center">Sparsity-Adaptive Mixture-of-Depth for<br>Efficient Vision-Language Models</h1>
 <p align="center">
   Bairui Li<sup>1,2</sup>,
   Xinyu Wei<sup>1,2</sup>,
@@ -17,15 +16,9 @@
   <sub><sup>📧</sup>Corresponding authors: <a href="mailto:liwentong95@gmail.com">liwentong95@gmail.com</a>, <a href="mailto:cslzhang@comp.polyu.edu.hk">cslzhang@comp.polyu.edu.hk</a></sub>
 </p>
 <p align="center">
-  <a href="https://arxiv.org/abs/<ARXIV_ID>" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/Paper-arXiv-red?logo=arxiv&logoColor=white" alt="Paper">
-  </a>
-  <a href="https://huggingface.co/datasets/<HF_ORG>/SA-MoD-41K" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/Training%20Data-Hugging%20Face-yellow?logo=huggingface&logoColor=white" alt="Training Data">
-  </a>
-  <a href="https://huggingface.co/<HF_ORG>" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/Checkpoints-Hugging%20Face-yellow?logo=huggingface&logoColor=white" alt="Checkpoints">
-  </a>
+  <a href="https://arxiv.org/abs/<ARXIV_ID>"><img src="https://img.shields.io/badge/Paper-arXiv-b31b1b?style=flat-square&logo=arxiv&logoColor=white" alt="Paper"></a>&nbsp;
+  <a href="https://huggingface.co/datasets/<HF_ORG>/SA-MoD-41K"><img src="https://img.shields.io/badge/Training%20Data-Hugging%20Face-ffd21e?style=flat-square&logo=huggingface&logoColor=black" alt="Training Data"></a>&nbsp;
+  <a href="https://huggingface.co/<HF_ORG>"><img src="https://img.shields.io/badge/Checkpoints-Hugging%20Face-ffd21e?style=flat-square&logo=huggingface&logoColor=black" alt="Checkpoints"></a>
 </p>
 </div>
 
@@ -35,7 +28,7 @@
 
 [News](#news) · [Highlights](#highlights) · [Pipeline](#pipeline) · [Performance](#performance) · [Code Layout](#code-layout) · [Setup](#setup)
 
-[Pretrained Models](#pretrained-models) · [Datasets](#datasets) · [Training](#training) · [Evaluation](#evaluation) · [Citation](#citation) · [License](#license) · [Acknowledgements](#acknowledgements)
+[Pretrained Models](#pretrained-models) · [Datasets](#datasets) · [Training](#training) · [Evaluation](#evaluation) · [Citation](#citation) · [Acknowledgements](#acknowledgements)
 
 If you find SA-MoD useful for your research, a star ⭐ would be greatly appreciated.
 
@@ -66,7 +59,7 @@ If you find SA-MoD useful for your research, a star ⭐ would be greatly appreci
 ## <a id="performance"></a>📊 Performance
 
 <details open>
-<summary>Image Benchmark Results</summary>
+<summary>🖼️ Image Benchmark Results</summary>
 
 - Results in Tab. 2 of the main paper
 
@@ -76,7 +69,7 @@ If you find SA-MoD useful for your research, a star ⭐ would be greatly appreci
 
 </details>
 <details open>
-<summary>Video Benchmark Results</summary>
+<summary>🎬 Video Benchmark Results</summary>
 
 - Results in Tab. 4 of the main paper
 
@@ -88,18 +81,17 @@ If you find SA-MoD useful for your research, a star ⭐ would be greatly appreci
 
 ## <a id="code-layout"></a>📁 Code Layout
 
-Run all commands below from the repository root.
-
 ```text
-samod/                          # Training core: SAMoD Qwen3.5, VOPD, OHiSA
-VLMEvalKit/                     # Image evaluation suite
-lmms-eval/                      # Video evaluation suite
-scripts/
-├── run_opd_qwen3_5_samod.sh    # On-policy self-distillation training launcher
-├── merge_checkpoint.sh         # FSDP-to-HF checkpoint merger
-└── eval/
-    ├── image_eval/             # VLMEvalKit launcher and benchmark config
-    └── video_eval/             # lmms-eval video evaluation launchers
+SA-MoD/
+├── VLMEvalKit/                     # Image evaluation suite
+├── lmms-eval/                      # Video evaluation suite
+├── samod/                          # Training core: SAMoD Qwen3.5, VOPD, OHiSA
+└── scripts/
+    ├── run_opd_qwen3_5_samod.sh    # On-policy self-distillation training launcher
+    ├── merge_checkpoint.sh         # FSDP-to-HF checkpoint merger
+    └── eval/
+        ├── image_eval/             # VLMEvalKit launcher and benchmark config
+        └── video_eval/             # lmms-eval video evaluation launchers
 ```
 
 ## <a id="setup"></a>🛠️ Setup
@@ -108,7 +100,6 @@ Use Python 3.12 with a CUDA 13.0 environment. Install PyTorch, dependencies, loc
 
 ```bash
 pip install torch==2.10.0 torchvision==0.25.0
-pip install -r samod/requirements.txt
 pip install -e samod
 pip install -e lmms-eval --no-deps
 pip install -e VLMEvalKit --no-deps
@@ -225,7 +216,7 @@ Logging defaults to console output. To enable SwanLab, export `SWANLAB_API_KEY` 
 
 Evaluation scripts accept either a merged HF checkpoint or an unmerged FSDP checkpoint (auto-merged via [`scripts/merge_checkpoint.sh`](scripts/merge_checkpoint.sh)). Pass `EVAL_ORIGINAL=1` to evaluate the dense `Qwen3.5-4B` baseline.
 
-### Image Benchmarks (VLMEvalKit)
+### 🖼️ Image Benchmarks Evaluation (VLMEvalKit)
 
 Benchmarks and settings are configured in [`eval_cfg_qwen3_5_integrated.json`](scripts/eval/image_eval/eval_cfg_qwen3_5_integrated.json).
 
@@ -238,7 +229,7 @@ bash scripts/eval/image_eval/qwen3_5.sh
 EVAL_ORIGINAL=1 bash scripts/eval/image_eval/qwen3_5.sh
 ```
 
-### Video Benchmarks (lmms-eval)
+### 🎬 Video Benchmarks Evaluation (lmms-eval)
 
 Benchmarks are configured in [`integrated_eval.sh`](scripts/eval/video_eval/integrated_eval.sh). Set `LMMS_LOG_GEN_METRICS=1` to also log average latency, TTFT, and KV-cache usage.
 
