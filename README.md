@@ -1,4 +1,7 @@
 <div align="center">
+<p align="center">
+  <img src="assets/logo_banner.png" alt="SA-MoD Logo" width="450">
+</p>
 <h1 align="center">SA-MoD: Sparsity-Adaptive Mixture-of-Depth for<br>Efficient Vision-Language Models</h1>
 <p align="center">
   Bairui Li<sup>1,2</sup>,
