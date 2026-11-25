@@ -1,0 +1,12 @@
+include: _default_template_yaml
+task: mvbench_counterfactual_inference
+dataset_name: counterfactual_inference
+test_split: train
+lmms_eval_specific_kwargs:
+  default:
+    sub_task: counterfactual_inference
+    post_prompt: "Only give the best option.\n"
+  qwen3_5_samod:
+    sub_task: counterfactual_inference
+    pre_prompt: "Question: "
+    post_prompt: "Answer with the option letter only.\n"

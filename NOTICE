@@ -1,0 +1,28 @@
+SA-MoD
+
+The license for this repository is the Apache License, Version 2.0, in the
+root LICENSE file. It is the same text previously used for the training tree.
+Source-file copyright headers are kept as they are.
+
+The directories below keep their own licenses. Those files govern the code
+inside them.
+
+samod/
+  Apache License, Version 2.0 (samod/LICENSE).
+  samod/verl contains verl.
+  Copyright 2024 Bytedance Ltd. and/or its affiliates.
+  Additional notices in verl source headers include The HuggingFace Team,
+  the SGLang Team, and ModelBest Inc.
+
+VLMEvalKit/
+  Apache License, Version 2.0.
+  Copyright 2023 VLMEvalKit Authors.
+  See VLMEvalKit/LICENSE.
+
+lmms-eval/
+  MIT License.
+  Copyright (c) 2025 LMMs-Lab.
+  The evaluation pipeline also keeps the MIT License of lm-evaluation-harness.
+  See lmms-eval/LICENSE.
+  Some tasks under lmms-eval/lmms_eval/tasks/ ship a further LICENSE file.
+  That file applies to that task.

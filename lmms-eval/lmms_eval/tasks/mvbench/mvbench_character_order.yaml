@@ -1,0 +1,12 @@
+include: _default_template_yaml
+task: mvbench_character_order
+dataset_name: character_order
+test_split: train
+lmms_eval_specific_kwargs:
+  default:
+    sub_task: character_order
+    post_prompt: "Only give the best option.\n"
+  qwen3_5_samod:
+    sub_task: character_order
+    pre_prompt: "Question: "
+    post_prompt: "Answer with the option letter only.\n"

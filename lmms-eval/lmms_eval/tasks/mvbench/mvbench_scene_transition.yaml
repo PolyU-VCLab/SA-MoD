@@ -1,0 +1,12 @@
+include: _default_template_yaml
+task: mvbench_scene_transition
+dataset_name: scene_transition
+test_split: train
+lmms_eval_specific_kwargs:
+  default:
+    sub_task: scene_transition
+    post_prompt: "Only give the best option.\n"
+  qwen3_5_samod:
+    sub_task: scene_transition
+    pre_prompt: "Question: "
+    post_prompt: "Answer with the option letter only.\n"

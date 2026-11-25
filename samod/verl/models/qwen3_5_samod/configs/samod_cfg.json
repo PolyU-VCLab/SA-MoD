@@ -1,0 +1,12 @@
+{
+  "modeling_file": "verl/models/qwen3_5_samod/modeling_qwen3_5_samod.py",
+  "model_class": "Qwen3_5SAMoDForConditionalGeneration",
+  "config_overrides": {
+    "verl_transformers_impl": "qwen3_5_samod",
+    "samod_weight_norm": 0.2,
+    "samod_margin": 0.1,
+    "samod_sparsity_target": 0.05,
+    "samod_dreg_loss_weight": 0.001,
+    "ohisa_loss_weight": 1.0
+  }
+}

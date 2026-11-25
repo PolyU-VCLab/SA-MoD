@@ -1,0 +1,23 @@
+# Required when using verl.utils.omega_conf_to_dataclass to instantiate dataclass configs
+_target_: verl.workers.config.DistillationConfig
+
+# Whether to enable the external fixed-teacher resource pool.
+enabled: false
+
+# Number of GPUs per node reserved for the external teacher pool.
+n_gpus_per_node: 0
+
+# Number of nodes reserved for the external teacher pool.
+nnodes: 0
+
+# Single fixed-teacher config used by the VOPD disaggregated path.
+teacher_models:
+  teacher_model:
+    _target_: verl.workers.config.DistillationTeacherModelConfig
+    key: default
+    model_path: null
+    num_replicas: 1
+    inference:
+      name: torch_fsdp
+      tensor_model_parallel_size: 1
+      gpu_memory_utilization: 0.5

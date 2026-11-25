@@ -1,0 +1,249 @@
+# Contributing to lmms-eval
+
+Thanks for your interest in contributing to lmms-eval! This guide covers everything you need to get started.
+
+## Getting Started
+
+### Prerequisites
+
+- Python >= 3.9
+- [uv](https://docs.astral.sh/uv/) (package manager)
+- Git
+
+### Setup
+
+```bash
+git clone https://github.com/EvolvingLMMs-Lab/lmms-eval.git
+cd lmms-eval
+uv sync
+```
+
+### Running a Quick Test
+
+```bash
+python -m lmms_eval \
+    --model qwen2_5_vl \
+    --model_args pretrained=Qwen/Qwen2.5-VL-3B-Instruct \
+    --tasks mme \
+    --batch_size 1 \
+    --limit 8
+```
+
+## Development Workflow
+
+1. **Fork** the repository
+2. **Create a branch** from `main` (`git checkout -b my-feature`)
+3. **Make changes** and test locally
+4. **Run linting** before committing:
+   ```bash
+   uv run pre-commit install
+   uv run pre-commit run --all-files
+   ```
+5. **Commit** with a descriptive message (see [Commit Style](#commit-style))
+6. **Open a pull request** against `main`
+
+### End-to-end validation
+
+Human and agent contributions follow the same
+[PR template](.github/pull_request_template.md). Ask coding agents to read this
+section before making changes. For bug fixes, attempt to reproduce the failure
+before editing, then rerun the same case after the fix. Report failed attempts
+and blockers honestly.
+
+Changes to evaluation behavior require real E2E evidence before review,
+including fixes and refactors of existing models/tasks, shared evaluation code,
+dependencies, and new integrations. Fill in the existing E2E fields: `PASS`,
+the exact public `lmms_eval` command, model/backend, dataset split and positive
+sample count (`N=8`, for example), hardware, result, evidence, and attestation.
+A small representative real dataset sample is sufficient. Include the setup,
+relevant dependency versions, and source of any reproduction helper with the
+command so reviewers can repeat it. Logs or artifacts should show data/media
+loading, inference, non-empty predictions, and emitted metrics.
+
+Lint, compilation, mocks, and helper tests alone do not count as E2E validation.
+If hardware, data, credentials, or dependencies block the run, record the
+attempted command and blocker, set `NOT RUN`, and keep the PR in draft until
+real evidence is available. Never invent results or claim `PASS` without a
+completed run. Recheck affected behavior after subsequent edits.
+
+Docs/tests/CI-only changes may use `NOT APPLICABLE`; list their actual checks
+and results in Validation. The check determines E2E applicability from all
+changed paths, including deletions and both sides of renames. Selecting
+Documentation update does not exempt runtime changes.
+
+The `validate-e2e-evidence` check validates the original template's fields; it
+does not run model inference or prove the submitted evidence is genuine.
+Reviewers must verify that the reported run exercises the change. Run the
+validator's regression tests with
+`node --test .github/pr-evidence/validate.test.cjs`.
+
+**Maintainer setup:** configure `validate-e2e-evidence` from GitHub Actions as a
+required status check for `main` in branch protection/rulesets. A workflow by
+itself does not block merging. Policy updates take effect after merging because
+the metadata check executes trusted base-branch code using `pull_request_target`.
+For existing PRs, trigger a new run by editing their description after the
+policy lands; rerunning an old workflow run uses its old workflow revision.
+
+### Contributor Funnel and Labels
+
+To make onboarding predictable, we use a lightweight funnel:
+
+`Discover -> First Run -> First Issue -> First PR -> Repeat PRs -> Maintainer Track`
+
+Issue labels to use and follow:
+
+- `good first issue` - Small task, scoped for first-time contributors
+- `help wanted` - Community contribution requested with maintainer support
+- `priority:high` - Important work for upcoming release
+- `needs reproduction` - Missing minimal repro before triage
+- `needs decision` - Maintainer decision required
+- `blocked` - Waiting on dependency or external change
+
+Target response times:
+
+- Triage first response: within 48 hours
+- First PR review: within 72 hours
+
+### Issue Writing Standard (aligned with PR template)
+
+For design-heavy or follow-up issues, use the same structure as PRs for consistency:
+
+1. **Summary** - max 3 bullets (problem, impact, desired outcome)
+2. **In scope** - explicit list of intended changes
+3. **Out of scope** - explicit list of excluded work
+4. **Proposed plan** - 3-6 concrete implementation steps
+5. **Validation plan** - commands/benchmarks and expected pass criteria
+6. **Risk / Compatibility** - behavior changes, migration risk, blockers
+7. **Acceptance criteria** - objective done conditions (checkbox style)
+
+GitHub supports this via `.github/ISSUE_TEMPLATE/design_proposal.yml`.
+For Linear tickets, use the same headings and keep each section concise.
+
+### Commit Style
+
+Use conventional commit prefixes:
+
+- `feat:` - New feature or benchmark
+- `fix:` - Bug fix
+- `refactor:` - Code restructuring without behavior change
+- `docs:` - Documentation only
+- `test:` - Adding or updating tests
+- `chore:` - Maintenance (deps, CI, configs)
+
+Examples:
+```
+feat: add SWE-bench Verified benchmark
+fix: handle empty response in MMMU parsing
+refactor: extract shared flatten() to model_utils
+```
+
+### Code Style
+
+- **Linting and formatting**: Ruff checks, sorts imports, and formats Python (line length 240; handled by pre-commit)
+- **Naming**: PEP 8 - `snake_case` for functions/variables, `PascalCase` for classes
+- **Type hints**: Required for all new code
+- **Docstrings**: Required for public APIs
+- **Line length**: 88 characters recommended, with a 240-character Ruff formatting target
+- **Imports**: Use `from lmms_eval.imports import optional_import` for model-specific packages
+
+## How to Contribute
+
+### Adding a New Benchmark / Task
+
+This is the most common contribution. Each benchmark lives in its own directory under `lmms_eval/tasks/`.
+
+1. **Create the directory**:
+   ```
+   lmms_eval/tasks/my_benchmark/
+       my_benchmark.yaml        # Task config
+       utils.py                 # Processing functions
+       _default_template_yaml   # Shared defaults (optional)
+   ```
+
+2. **Write the YAML config**:
+   ```yaml
+   task: my_benchmark
+   dataset_path: hf-org/my-dataset     # HuggingFace dataset
+   test_split: test
+   output_type: generate_until
+
+   doc_to_visual: !function utils.doc_to_visual
+   doc_to_text: !function utils.doc_to_text
+   doc_to_messages: !function utils.doc_to_messages
+   doc_to_target: "answer"
+
+   process_results: !function utils.process_results
+
+   metric_list:
+     - metric: accuracy
+       aggregation: mean
+       higher_is_better: true
+
+   generation_kwargs:
+     max_new_tokens: 128
+   ```
+
+3. **Implement the functions in `utils.py`**:
+   - `doc_to_visual(doc)` - Extract images/video/audio from a dataset sample
+   - `doc_to_text(doc, lmms_eval_specific_kwargs)` - Format the text prompt
+   - `doc_to_messages(doc, lmms_eval_specific_kwargs)` - Build structured chat messages (recommended)
+   - `process_results(doc, results)` - Parse model output and compute metrics
+
+4. **Test your benchmark**:
+   ```bash
+   python -m lmms_eval --model qwen2_5_vl \
+       --model_args pretrained=Qwen/Qwen2.5-VL-3B-Instruct \
+       --tasks my_benchmark --limit 8
+   ```
+
+See `docs/guides/task_guide.md` for a detailed walkthrough.
+
+### Adding a New Model
+
+Models live under `lmms_eval/models/chat/` (recommended) or `lmms_eval/models/simple/` (legacy).
+
+1. **Create `models/chat/my_model.py`**
+2. **Inherit from `lmms`**, set `is_simple = False`
+3. **Implement required methods**: `generate_until`, `loglikelihood`, `generate_until_multi_round`
+4. **Register** in `models/__init__.py`:
+   ```python
+   AVAILABLE_CHAT_TEMPLATE_MODELS = {"my_model": "MyModel", ...}
+   ```
+5. **Use `optional_import`** for model-specific dependencies:
+   ```python
+   from lmms_eval.imports import optional_import
+   MyLib, _has_mylib = optional_import("mylib", "MyLib")
+   ```
+
+See `docs/guides/model_guide.md` for details.
+
+### Fixing Bugs
+
+1. Check existing [issues](https://github.com/EvolvingLMMs-Lab/lmms-eval/issues) for duplicates
+2. If the bug is new, open an issue first using the **Bug Report** template
+3. Reference the issue in your PR
+
+### Improving Documentation
+
+Documentation improvements are always welcome. Key docs:
+- `README.md` - Project overview (available in 16 languages under `docs/`)
+- `docs/guides/task_guide.md` - How to add benchmarks
+- `docs/guides/model_guide.md` - How to add models
+- `docs/releases/` - Release notes and changelog
+
+## Package Management
+
+**Always use `uv`, never `pip`.**
+
+```bash
+uv sync                    # Install from lockfile
+uv add package             # Add a dependency
+uv remove package          # Remove a dependency
+uv run tool                # Run a tool in the environment
+```
+
+## Questions?
+
+- **Discord**: [discord.gg/zdkwKUqrPy](https://discord.gg/zdkwKUqrPy)
+- **Issues**: [GitHub Issues](https://github.com/EvolvingLMMs-Lab/lmms-eval/issues)
+- **Quick-start**: [Evaluate Your Model in 5 Minutes](docs/getting-started/quickstart.md)

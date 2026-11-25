@@ -1,0 +1,82 @@
+{
+    "model": {
+        "MODEL_NAME_PLACEHOLDER": {
+            "class": "Qwen3_5VLChat",
+            "model_path": "MODEL_PATH_PLACEHOLDER",
+            "min_pixels": 262144,
+            "max_pixels": 16777216,
+            "max_new_tokens": 512,
+            "repetition_penalty": 1.0,
+            "attn_implementation": "flash_attention_2",
+            "report_vision_token_retention": true,
+            "chat_template_kwargs": {
+                "chat_template_path": "samod/chat_templates/chat_template_update.jinja",
+                "enable_thinking": false,
+                "force_direct_answer": true
+            },
+            "model_choice_kwargs": {
+                "from_scratch": false,
+                "samod_margin": 0.1,
+                "samod_dreg_loss_weight": 0.001,
+                "samod_sparsity_target": 0.05,
+                "samod_weight_norm": 0.2,
+                "samod_log_vision_token_retention": true,
+                "ohisa_loss_weight": 1.0
+            }
+        }
+    },
+    "data": {
+        "RealWorldQA": {
+            "class": "ImageMCQDataset",
+            "dataset": "RealWorldQA"
+        },
+        "MMBench_DEV_EN_V11": {
+            "class": "ImageMCQDataset",
+            "dataset": "MMBench_DEV_EN_V11"
+        },
+        "HRBench4K": {
+            "class": "HRBenchDataset",
+            "dataset": "HRBench4K"
+        },
+        "HallusionBench": {
+            "class": "ImageYORNDataset",
+            "dataset": "HallusionBench"
+        },
+        "AI2D_TEST": {
+            "class": "ImageMCQDataset",
+            "dataset": "AI2D_TEST"
+        },
+        "CV-Bench-2D": {
+            "class": "CVBench",
+            "dataset": "CV-Bench-2D"
+        },
+        "CV-Bench-3D": {
+            "class": "CVBench",
+            "dataset": "CV-Bench-3D"
+        },
+        "POPE": {
+            "class": "ImageYORNDataset",
+            "dataset": "POPE"
+        },
+        "VStarBench": {
+            "class": "ImageMCQDataset",
+            "dataset": "VStarBench"
+        },
+        "VisOnlyQA-VLMEvalKit": {
+            "class": "ImageMCQDataset",
+            "dataset": "VisOnlyQA-VLMEvalKit"
+        },
+        "MMStar": {
+            "class": "ImageMCQDataset",
+            "dataset": "MMStar"
+        },
+        "OCRBench": {
+            "class": "OCRBench",
+            "dataset": "OCRBench"
+        },
+        "DocVQA_VAL": {
+            "class": "ImageVQADataset",
+            "dataset": "DocVQA_VAL"
+        }
+    }
+}

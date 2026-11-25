@@ -1,0 +1,12 @@
+include: _default_template_yaml
+task: mvbench_moving_direction
+dataset_name: moving_direction
+test_split: train
+lmms_eval_specific_kwargs:
+  default:
+    sub_task: moving_direction
+    post_prompt: "Only give the best option.\n"
+  qwen3_5_samod:
+    sub_task: moving_direction
+    pre_prompt: "Question: "
+    post_prompt: "Answer with the option letter only.\n"
