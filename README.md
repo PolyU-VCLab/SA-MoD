@@ -30,9 +30,9 @@
 
 ## 📌 Quick Links
 
-[News](#news) · [Highlights](#highlights) · [Pipeline](#pipeline) · [Performance](#performance) · [Code Layout](#code-layout) · [Setup](#setup)
+[News](#-news) · [Highlights](#-highlights) · [Pipeline](#-pipeline) · [Performance](#-performance) · [Code Layout](#-code-layout) · [Setup](#-setup)
 
-[Models and Checkpoints](#models-and-checkpoints) · [Datasets](#datasets) · [Training](#training) · [Evaluation](#evaluation) · [Citation](#citation) · [Acknowledgements](#acknowledgements)
+[Models and Checkpoints](#-models-and-checkpoints) · [Datasets](#-datasets) · [Training](#-training) · [Evaluation](#-evaluation) · [Citation](#-citation) · [Acknowledgements](#-acknowledgements)
 
 If you find this repo useful, a star ⭐ would be greatly appreciated.
 
