@@ -304,12 +304,12 @@ Routing, sparsity, and hidden-state alignment settings are defined under `config
     <tr>
       <td><code>samod_margin</code></td>
       <td align="center"><code>0.1</code></td>
-      <td>Routing score margin around the learned threshold</td>
+      <td>Routing score margin <i>&delta;</i></td>
     </tr>
     <tr>
       <td><code>samod_weight_norm</code></td>
       <td align="center"><code>0.2</code></td>
-      <td>Branch reweighting scale for kept visual tokens</td>
+      <td>Branch reweighting scale <i>w</i></td>
     </tr>
     <tr>
       <td><code>samod_dreg_loss_weight</code></td>
